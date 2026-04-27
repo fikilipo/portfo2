@@ -41,7 +41,7 @@ export function Boot() {
           ЭХО РУНЕТА
         </h1>
         <p className="mt-2 text-sm opacity-80">
-          цифровое исследование души российского интернета
+          три эпохи рунета: 2001 · 2009 · 2026
         </p>
 
         <div className="mt-10 space-y-1 text-sm md:text-base">

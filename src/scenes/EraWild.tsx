@@ -118,7 +118,12 @@ export function EraWild() {
               <ul className="grid grid-cols-3 md:grid-cols-5 gap-3 text-center text-xs">
                 {["Дима", "Катя", "Серёга", "АнЮтА", "Палыч", "ZX_KING", "lola", "neoma", "тёма", "ёжик"].map((n) => (
                   <li key={n}>
-                    <div className="mx-auto h-12 w-12 rounded-full border-2 border-wild-cyan bg-gradient-to-br from-wild-magenta to-wild-cyan" />
+                    <img
+                      src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${encodeURIComponent(n)}&backgroundColor=000000`}
+                      alt=""
+                      loading="lazy"
+                      className="mx-auto h-14 w-14 border-2 border-wild-cyan bg-black [image-rendering:pixelated]"
+                    />
                     <p className="mt-1">{n}</p>
                   </li>
                 ))}

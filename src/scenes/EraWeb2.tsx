@@ -75,7 +75,12 @@ export function EraWeb2() {
             <ul className="space-y-2 text-sm">
               {FRIENDS.map((f) => (
                 <li key={f.name} className="flex items-center gap-2">
-                  <span className="h-7 w-7 rounded-full bg-gradient-to-br from-[#a8c2e0] to-[#5181b8]" />
+                  <img
+                    src={`https://i.pravatar.cc/56?u=web2-friend-${encodeURIComponent(f.name)}`}
+                    alt=""
+                    loading="lazy"
+                    className="h-7 w-7 rounded-full object-cover bg-[#a8c2e0]"
+                  />
                   <span>{f.name}</span>
                   <span
                     className={`ml-auto h-2.5 w-2.5 rounded-full ${
@@ -98,7 +103,12 @@ export function EraWeb2() {
             {/* wall post */}
             <article className="relative rounded-md border border-web2-border bg-web2-panel p-4 shadow-sm">
               <header className="flex items-center gap-3">
-                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#ffd58a] to-[#ff8c00]" />
+                <img
+                  src="https://i.pravatar.cc/96?u=anton-sokolov-vk-2009"
+                  alt="Антон Соколов"
+                  loading="lazy"
+                  className="h-12 w-12 rounded-full object-cover bg-[#ffd58a]"
+                />
                 <div>
                   <p className="font-bold text-web2-accent">Антон Соколов</p>
                   <p className="text-xs text-web2-ink/70">2 ноября 2009 · 23:14 · из мобильного</p>
@@ -146,7 +156,12 @@ export function EraWeb2() {
               <ul className="mt-4 space-y-2 border-t border-web2-border pt-3 text-sm">
                 {comments.map((c, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="h-6 w-6 shrink-0 rounded-full bg-gradient-to-br from-[#cfd8e3] to-[#92a6c0]" />
+                    <img
+                      src={`https://i.pravatar.cc/48?u=web2-comment-${encodeURIComponent(c.author)}-${i}`}
+                      alt=""
+                      loading="lazy"
+                      className="h-6 w-6 shrink-0 rounded-full object-cover bg-[#cfd8e3]"
+                    />
                     <p>
                       <span className="font-bold text-web2-accent">{c.author}: </span>
                       {c.text}
@@ -171,9 +186,12 @@ export function EraWeb2() {
               <div className="mt-3 grid gap-4 md:grid-cols-[1fr_280px]">
                 <div className="bg-black p-2">
                   <div className="border border-white/40 p-3 text-center">
-                    <div className="aspect-video bg-gradient-to-br from-[#1f2937] to-[#0b1220] flex items-center justify-center text-white/60 text-xs">
-                      [фото из интернета]
-                    </div>
+                    <img
+                      src="https://picsum.photos/seed/runet-demotivator-2009/640/360"
+                      alt="фото"
+                      loading="lazy"
+                      className="aspect-video w-full object-cover grayscale-[20%]"
+                    />
                     <p className="mt-3 font-serif text-2xl text-white tracking-wider">{demoTop || "ВВЕДИ ВЕРХ"}</p>
                     <p className="mt-1 text-sm text-white/80">{demoBottom || "и подпись снизу"}</p>
                   </div>

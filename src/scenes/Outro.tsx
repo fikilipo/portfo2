@@ -25,9 +25,9 @@ export function Outro() {
           Рунета.
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-eco-dim leading-relaxed">
-          Три эпохи — три способа быть в сети. Они не сменяют друг друга,
-          они продолжают звучать одновременно. Ты только что прошёл через
-          них и услышал каждую.
+          Три эпохи. Они не отменили друг друга: narod.ru ещё лежит в архивах,
+          ВК ещё открыт в соседней вкладке, а нейросеть в браузере уже считает,
+          что у нас общего с теми двумя.
         </p>
 
         {/* timeline */}
@@ -49,10 +49,10 @@ export function Outro() {
 
         <div className="mt-20 flex flex-col items-start gap-2 border-t border-white/10 pt-8 text-sm text-eco-dim">
           <p>
-            «Эхо Рунета» — иммерсивный веб-перформанс. React · Vite · Tailwind · GSAP.
+            «Эхо Рунета» · React · Vite · Tailwind · GSAP · без бэкенда.
           </p>
           <p>
-            Сделано как письмо рунету самого себя из 2026 года.
+            Сайт про то, что рунет помнит про себя.
           </p>
         </div>
       </div>
