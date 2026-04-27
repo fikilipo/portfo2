@@ -34,16 +34,16 @@ export function EraWeb2() {
   };
 
   const onDoubleLike = () => {
-    const burst = Array.from({ length: 24 }).map((_, i) => ({
+    const burst = Array.from({ length: 36 }).map((_, i) => ({
       id: Date.now() + i,
       x: 50 + (Math.random() - 0.5) * 60,
-      dx: (Math.random() - 0.5) * 200,
-      dur: 1200 + Math.random() * 800,
+      dx: (Math.random() - 0.5) * 240,
+      dur: 1200 + Math.random() * 900,
     }));
     setHearts((h) => [...h, ...burst]);
     window.setTimeout(() => {
       setHearts((h) => h.filter((x) => !burst.find((b) => b.id === x.id)));
-    }, 2200);
+    }, 2400);
   };
 
   const submitComment = (e: React.FormEvent) => {
@@ -211,14 +211,6 @@ export function EraWeb2() {
           </main>
         </div>
       </div>
-
-      {/* heart fly keyframes (scoped via inline styles need CSS) */}
-      <style>{`
-        @keyframes heart-fly {
-          0%   { transform: translate(0,0) scale(.8); opacity: 1; }
-          100% { transform: translate(var(--dx), -180px) scale(1.6); opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }
