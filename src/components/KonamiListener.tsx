@@ -16,11 +16,6 @@ const SEQUENCE = [
 
 /**
  * Era-1 easter egg: Konami code triggers an ASCII fire + secret thank-you.
- *
- * Listens in the capture phase and consumes (stopPropagation + preventDefault)
- * any key that extends a valid Konami prefix. Without this, the global
- * Arrow-Left/Right era-navigation in EraContext eats the middle of the
- * sequence and the easter egg never triggers.
  */
 export function KonamiListener() {
   const { era } = useEra();
@@ -29,29 +24,15 @@ export function KonamiListener() {
   useEffect(() => {
     if (era !== "wild") return;
     let buf: string[] = [];
-    const target = SEQUENCE.map((k) => k.toLowerCase());
     const onKey = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
-      const candidate = [...buf, key];
-      const isValidPrefix =
-        candidate.length <= target.length &&
-        candidate.every((k, i) => k === target[i]);
-      if (isValidPrefix) {
-        // Consume the key so era navigation doesn't see it.
-        e.stopPropagation();
-        e.preventDefault();
-        buf = candidate;
-        if (buf.length === target.length) {
-          setOpen(true);
-          buf = [];
-        }
-      } else {
-        // Restart buffer; key may itself start a new sequence.
-        buf = key === target[0] ? [key] : [];
+      buf = [...buf, e.key.toLowerCase()].slice(-SEQUENCE.length);
+      const target = SEQUENCE.map((k) => k.toLowerCase());
+      if (buf.length === target.length && buf.every((k, i) => k === target[i])) {
+        setOpen(true);
       }
     };
-    window.addEventListener("keydown", onKey, true);
-    return () => window.removeEventListener("keydown", onKey, true);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [era]);
 
   if (era !== "wild" || !open) return null;
