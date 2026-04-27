@@ -28,6 +28,25 @@ npm run lint
 npm run typecheck
 ```
 
+> Открывать `dist/index.html` двойным кликом (через `file://`) **не получится** —
+> модули ES не грузятся по `file://`. Используй `npm run preview` или любой
+> статический сервер.
+
+## Деплой на GitHub Pages
+
+В репо настроен workflow `.github/workflows/pages.yml`. На каждый push в `main`
+он билдит проект и публикует `dist/` через **actions/deploy-pages**. Сайт будет
+доступен по `https://<owner>.github.io/portfo2/`.
+
+Один раз нужно переключить Pages в режим Actions:
+
+1. Repo → **Settings** → **Pages**.
+2. **Source** → выбрать **GitHub Actions** (а не «Deploy from a branch»).
+
+Если форкаешь репозиторий с другим именем — поменяй `base` в `vite.config.ts`
+на `/<your-repo>/`. Для деплоя на корневой домен (Vercel/Netlify/собственный
+домен) поставь `base: "/"`.
+
 ## Навигация
 
 - `←` / `→` — переключение эпох
