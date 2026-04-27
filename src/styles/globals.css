@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --era-bg: #070708;
+  --era-fg: #f5f5f7;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  background: #000;
+}
+
+body {
+  margin: 0;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+  background: var(--era-bg);
+  color: var(--era-fg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Глобальный плавный переход для смены палитры */
+body, .era-root {
+  transition: background-color 600ms ease, color 600ms ease;
+}
+
+/* Скрыть полосы прокрутки для эстетики (стрелки оставим) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 8px; }
+
+/* === Глитч-оверлей === */
+.glitch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.glitch-overlay .channel {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: contrast(1.2) saturate(1.4);
+  opacity: 0;
+}
+.glitch-overlay .channel.r { mix-blend-mode: screen; }
+.glitch-overlay .channel.g { mix-blend-mode: screen; }
+.glitch-overlay .channel.b { mix-blend-mode: screen; }
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0;
+}
+
+.flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Утилиты, которые часто пригождаются */
+.no-select { user-select: none; }
+.tabular { font-variant-numeric: tabular-nums; }
