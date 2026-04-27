@@ -16,6 +16,7 @@ export function CommandPalette() {
   const [q, setQ] = useState("");
   const [aiAnswer, setAiAnswer] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const typeTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (era !== "eco") {
@@ -39,8 +40,21 @@ export function CommandPalette() {
       setQ("");
       setAiAnswer(null);
       setTimeout(() => inputRef.current?.focus(), 30);
+    } else {
+      // cancel any in-flight typewriter when palette closes
+      if (typeTimerRef.current) {
+        window.clearTimeout(typeTimerRef.current);
+        typeTimerRef.current = null;
+      }
     }
   }, [open]);
+
+  // safety net на полный unmount (смена эпохи во время печати)
+  useEffect(() => {
+    return () => {
+      if (typeTimerRef.current) window.clearTimeout(typeTimerRef.current);
+    };
+  }, []);
 
   if (era !== "eco" || !open) return null;
 
@@ -67,8 +81,11 @@ export function CommandPalette() {
           if (i > text.length) return;
           setAiAnswer(text.slice(0, i));
           i += 2;
-          if (i <= text.length + 2) window.setTimeout(tick, 18);
+          if (i <= text.length + 2) {
+            typeTimerRef.current = window.setTimeout(tick, 18);
+          }
         };
+        if (typeTimerRef.current) window.clearTimeout(typeTimerRef.current);
         tick();
       },
     },

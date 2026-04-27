@@ -52,6 +52,7 @@ export function Hud() {
       <div className="flex items-center gap-3">
         <div className={`px-2 text-xs uppercase ${s.brand}`}>
           ЭХО · РУНЕТА
+          {era === "outro" && <span className="ml-2 opacity-60">· финал</span>}
         </div>
         <div className="h-5 w-px bg-current opacity-20" />
         <ul className="flex items-center gap-1">

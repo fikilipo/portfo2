@@ -45,10 +45,10 @@ export function EraWild() {
         {/* Title block in retro frame */}
         <div className="border-4 border-wild-cyan bg-black/70 p-6 text-center">
           <h1 className="text-4xl md:text-6xl text-wild-magenta animate-flicker tracking-wider">
-            ◆ Hомер один в Рунете ◆
+            ◆ Номер один в Рунете ◆
           </h1>
           <p className="mt-2 text-wild-gold text-lg">
-            домашняя страничка <span className="text-wild-cyan">Антонa</span> на narod.ru
+            домашняя страничка <span className="text-wild-cyan">Антона</span> на narod.ru
           </p>
           <p className="mt-1 text-sm text-wild-ink/80">
             обновлено: 14.08.2001 · автор сайта: я · хостинг: бесплатно :-)
@@ -83,16 +83,17 @@ export function EraWild() {
               <p className="mt-1 text-[10px] text-wild-ink/70">с 21.06.1999</p>
             </div>
 
-            {/* 88x31 banners */}
-            <div className="space-y-2">
+            {/* 88x31 web banners — каноничный размер веб-1.0 */}
+            <div className="grid grid-cols-2 gap-2 justify-items-center">
               {[
-                { t: "Народ.ру", c: "from-yellow-400 to-orange-500", k: "narod" },
-                { t: "RAMBLER · ТОП100", c: "from-blue-500 to-indigo-700", k: "rambler" },
-                { t: "Anekdot.ru", c: "from-pink-500 to-rose-600", k: "anekdot" },
+                { t: "NAROD",   c: "from-yellow-400 to-orange-500", k: "narod" },
+                { t: "RAMBLER", c: "from-blue-500 to-indigo-700",   k: "rambler" },
+                { t: "ANEKDOT", c: "from-pink-500 to-rose-600",     k: "anekdot" },
+                { t: "FIDO",    c: "from-emerald-500 to-teal-700",  k: "fido" },
               ].map((b) => (
                 <div
                   key={b.k}
-                  className={`mx-auto h-[31px] w-[176px] bg-gradient-to-r ${b.c} text-center text-[10px] font-bold leading-[31px] text-white border border-black animate-floaty shadow-[2px_2px_0_#000]`}
+                  className={`h-[31px] w-[88px] bg-gradient-to-r ${b.c} text-center text-[9px] font-bold leading-[31px] text-white border border-black animate-floaty shadow-[2px_2px_0_#000] tracking-wider`}
                 >
                   {b.t}
                 </div>

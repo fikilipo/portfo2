@@ -139,6 +139,12 @@ body[data-cursor="wild"] * {
   100% { transform: translateY(100%); }
 }
 
+/* heart cascade for Era 2 double-like easter egg */
+@keyframes heart-fly {
+  0%   { transform: translate(0, 0) scale(.8); opacity: 1; }
+  100% { transform: translate(var(--dx), -200px) scale(1.6); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-flicker,

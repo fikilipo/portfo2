@@ -55,14 +55,34 @@ export function EraEco() {
   const [aiText, setAiText] = useState("");
   const aiRef = useRef<number | null>(null);
 
+  // throttle mousemove via rAF — иначе setGrad ререндерит сцену на каждое движение мыши
   useEffect(() => {
+    let raf = 0;
+    let pending: { x: number; y: number } | null = null;
     const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      setGrad({ x, y });
+      pending = {
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      };
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        if (pending) setGrad(pending);
+        pending = null;
+        raf = 0;
+      });
     };
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // AI typewriter interval cleanup на unmount эпохи (иначе setState на размонтированном компоненте)
+  useEffect(() => {
+    return () => {
+      if (aiRef.current) window.clearInterval(aiRef.current);
+    };
   }, []);
 
   const askAi = () => {
